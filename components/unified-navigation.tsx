@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useState, useEffect, memo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
-import PowerIndicator from "@/components/power-indicator"
+import { useState, useEffect, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import PowerIndicator from "@/components/power-indicator";
 
 interface UnifiedNavigationProps {
-  activeSection: string
-  setActiveSection: (section: string) => void
-  sections: string[]
+  activeSection: string;
+  setActiveSection: (section: string) => void;
+  sections: string[];
 }
 
 const UnifiedNavigation = memo(function UnifiedNavigation({
@@ -17,60 +17,60 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
   setActiveSection,
   sections,
 }: UnifiedNavigationProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [sideNavVisible, setSideNavVisible] = useState(false)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const [scrollingDown, setScrollingDown] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sideNavVisible, setSideNavVisible] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollingDown, setScrollingDown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // Show/hide side nav based on scroll position
       if (window.scrollY > 300) {
-        setSideNavVisible(true)
+        setSideNavVisible(true);
       } else {
-        setSideNavVisible(false)
+        setSideNavVisible(false);
       }
 
       // Determine scroll direction
-      const currentScrollY = window.scrollY
-      setScrollingDown(currentScrollY > lastScrollY)
-      setLastScrollY(currentScrollY)
+      const currentScrollY = window.scrollY;
+      setScrollingDown(currentScrollY > lastScrollY);
+      setLastScrollY(currentScrollY);
 
       // Determine active section
       for (const section of sections.slice().reverse()) {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect()
+          const rect = element.getBoundingClientRect();
           // Adjust the detection area to be more accurate
           if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section)
-            break
+            setActiveSection(section);
+            break;
           }
         }
       }
 
       // Default to home if at the top
       if (window.scrollY < 300) {
-        setActiveSection("home")
+        setActiveSection("home");
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
     // Initial check on mount
-    setTimeout(handleScroll, 100)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY, sections, setActiveSection])
+    setTimeout(handleScroll, 100);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY, sections, setActiveSection]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 80, // Account for fixed header
         behavior: "smooth",
-      })
-      setMobileMenuOpen(false)
+      });
+      setMobileMenuOpen(false);
     }
-  }
+  };
 
   return (
     <>
@@ -78,15 +78,20 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
       <header
         className={cn(
           "fixed top-0 left-0 w-full z-50 transition-transform duration-300",
-          scrollingDown && window.scrollY > 300 ? "-translate-y-full" : "translate-y-0",
+          scrollingDown && window.scrollY > 300
+            ? "-translate-y-full"
+            : "translate-y-0"
         )}
       >
         <div className="bg-black/80 backdrop-blur-md border-b border-red-900/30">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
-              <button onClick={() => scrollToSection("home")} className="flex items-center gap-2">
+              <button
+                onClick={() => scrollToSection("home")}
+                className="flex items-center gap-2"
+              >
                 <PowerIndicator active={true} />
-                <span className="font-bold text-xl text-red-500">SUMIT.POKHREL</span>
+                <span className="font-bold text-xl text-red-500">Sumit</span>
               </button>
 
               <div className="hidden md:flex items-center gap-8">
@@ -95,7 +100,9 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                     key={section}
                     onClick={() => scrollToSection(section)}
                     className={`relative text-sm uppercase tracking-wider transition-colors ${
-                      activeSection === section ? "text-red-500" : "text-gray-400 hover:text-white"
+                      activeSection === section
+                        ? "text-red-500"
+                        : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {section}
@@ -104,15 +111,26 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                         layoutId="activeTopSection"
                         className="absolute -bottom-1 left-0 w-full h-0.5 bg-red-500"
                         initial={false}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 30,
+                        }}
                       />
                     )}
                   </button>
                 ))}
               </div>
 
-              <button className="md:hidden text-red-500 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <button
+                className="md:hidden text-red-500 p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </button>
             </div>
           </div>
@@ -181,7 +199,11 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                         <motion.div
                           className="absolute inset-0 rounded-md bg-red-900/50"
                           layoutId="navButtonBg"
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          transition={{
+                            type: "spring",
+                            bounce: 0.2,
+                            duration: 0.6,
+                          }}
                         />
                       )}
 
@@ -190,7 +212,9 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                         <motion.div
                           className={cn(
                             "w-3 h-3 rounded-full",
-                            activeSection === section ? "bg-red-500" : "bg-gray-600 group-hover:bg-gray-400",
+                            activeSection === section
+                              ? "bg-red-500"
+                              : "bg-gray-600 group-hover:bg-gray-400"
                           )}
                           animate={{
                             boxShadow:
@@ -204,7 +228,10 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                           }}
                           transition={{
                             duration: 1.5,
-                            repeat: activeSection === section ? Number.POSITIVE_INFINITY : 0,
+                            repeat:
+                              activeSection === section
+                                ? Number.POSITIVE_INFINITY
+                                : 0,
                             repeatType: "reverse",
                           }}
                         />
@@ -216,7 +243,11 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                           <motion.div
                             className="absolute inset-0 bg-red-500"
                             layoutId="activeIndicator"
-                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            transition={{
+                              type: "spring",
+                              bounce: 0.2,
+                              duration: 0.6,
+                            }}
                           />
                         )}
                       </div>
@@ -232,7 +263,11 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
                   className="absolute left-1/2 -translate-x-1/2 w-0.5 bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.7)] -z-10"
                   style={{
                     top: 0,
-                    height: `${((sections.indexOf(activeSection) + 1) / sections.length) * 100}%`,
+                    height: `${
+                      ((sections.indexOf(activeSection) + 1) /
+                        sections.length) *
+                      100
+                    }%`,
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
@@ -265,8 +300,7 @@ const UnifiedNavigation = memo(function UnifiedNavigation({
         )}
       </AnimatePresence>
     </>
-  )
-})
+  );
+});
 
-export default UnifiedNavigation
-
+export default UnifiedNavigation;

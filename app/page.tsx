@@ -183,7 +183,7 @@ export default function Home() {
       description: "Futuristic Space  Chicken Game that is fun to play",
       tags: ["Game", "NextJs", "Tailwind"],
       image:
-        "https://private-user-images.githubusercontent.com/129023326/425566572-027453ab-109e-4a15-992f-0923d01982d0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1NzQ1NzYsIm5iZiI6MTc0MjU3NDI3NiwicGF0aCI6Ii8xMjkwMjMzMjYvNDI1NTY2NTcyLTAyNzQ1M2FiLTEwOWUtNGExNS05OTJmLTA5MjNkMDE5ODJkMC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQxNjI0MzZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02Mzc1MTAxNmIwZjNiNDQ3MGQ4NTUwOTNmMTY1OGY0OGYzZDc2YzhiZmM1ODI4ZTljZjExZGY5ODE2MjNmOWYxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.GxHY9uBL7rIprfrkmxi6gItuYQUvaS8oG0hvnu7mUSI",
+        "https://private-user-images.githubusercontent.com/129023326/425566572-027453ab-109e-4a15-992f-0923d01982d0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1NzcxODksIm5iZiI6MTc0MjU3Njg4OSwicGF0aCI6Ii8xMjkwMjMzMjYvNDI1NTY2NTcyLTAyNzQ1M2FiLTEwOWUtNGExNS05OTJmLTA5MjNkMDE5ODJkMC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQxNzA4MDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wOWZkNmQ0ZmZhYjhiZTk3N2IwOGE1NTY0OTc2Zjc4MDIyZGZmYTAxMTgxNDE3OWQwY2Y0ZDllNDhkNDNkNGJjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.PZG1-nNZw_ATPyVAi8VF1UQ7pCclbCMQ5vRWU4WrGuY",
       github: "https://github.com/ozsumit/CosmicChickenRhapsody",
       liveDemo: "https://space.sumit.info.np",
     },
@@ -195,7 +195,7 @@ export default function Home() {
       tags: ["NextJs", "TypeScript", "Tailwind", "Mistral", "MongoDB"],
       // tags: ["Three.js", "3D Modeling", "Animation"],
       image:
-        "https://private-user-images.githubusercontent.com/129023326/425567573-d66164c9-1269-4059-8279-e6b54e9bf7d2.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1NzQ3NjYsIm5iZiI6MTc0MjU3NDQ2NiwicGF0aCI6Ii8xMjkwMjMzMjYvNDI1NTY3NTczLWQ2NjE2NGM5LTEyNjktNDA1OS04Mjc5LWU2YjU0ZTliZjdkMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQxNjI3NDZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02OGRhMTliMjJlMzJiMmEzY2JmMmJkZjM3OTVjMGUwNDRjNDNiNzgwNzRkMDEwYTliNDY2MzQ5MTE0M2M3ODA1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.CE3nWPPgG5WsqJvx3Uh13wf9EOsenJbww4FJ0UE0E2k",
+        "https://private-user-images.githubusercontent.com/129023326/425567573-d66164c9-1269-4059-8279-e6b54e9bf7d2.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1NzcxMjAsIm5iZiI6MTc0MjU3NjgyMCwicGF0aCI6Ii8xMjkwMjMzMjYvNDI1NTY3NTczLWQ2NjE2NGM5LTEyNjktNDA1OS04Mjc5LWU2YjU0ZTliZjdkMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQxNzA3MDBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jM2E2MzhlZjMyMDUyOTBlOTJhZmFlMDdkNzFkZmFiMTYwNTIwOTQ4ZmRkZjUwMjU5OGM1ZTIzMTFhZjk4MjVjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.xuequjcXyAK5jzXN8vME3c2mbyFKQixGPPDlm5jFins",
       github: "https://github.com/ozsumit/library-management",
       liveDemo: "https://lib.sumit.info.np",
     },
@@ -497,17 +497,17 @@ export default function Home() {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-red-600 opacity-20 blur-xl rounded-lg"></div>
               <div className="relative border-2 border-red-800/70 bg-black/80 p-6 rounded-lg h-full flex flex-col">
                 {/* Image with data overlay */}
-                <div className="relative mb-6 flex-grow">
+                <div className="relative  bg-red-500 bg-blend-multiply mb-6 flex-grow">
                   <EnhancedGlitchImage
                     intensity="medium"
                     frequency="occasional"
                   >
                     <Image
-                      src="https://instagram.fktm19-1.fna.fbcdn.net/v/t51.29350-15/463449025_1536085884450845_3521647934492069419_n.webp?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDE0NDAuc2RyLmYyOTM1MC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fktm19-1.fna.fbcdn.net&_nc_cat=105&_nc_oc=Q6cZ2QGsp6D6xcIetVJHGtdGjq7Av8p4acGvmXXZDJBh6QdLnqdZDzmP6IlXXZ7ZLtPO6UU&_nc_ohc=YmEAN1XbZrEQ7kNvgFfmjuG&_nc_gid=jP5v7dZtyl22lJJZL6MzAQ&edm=AP4sbd4BAAAA&ccb=7-5&ig_cache_key=MzQ3OTQ4ODQzODg2NjUyNTc5MQ%3D%3D.3-ccb7-5&oh=00_AYF2hsjd8_m76pHlz4m63lr0SC21YuXe5nF9gXGmy38XTw&oe=67E379F4&_nc_sid=7a9f4b"
+                      src="https://private-user-images.githubusercontent.com/129023326/425575383-169552cd-8e20-4485-9860-7b982cce806f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1NzYyMzksIm5iZiI6MTc0MjU3NTkzOSwicGF0aCI6Ii8xMjkwMjMzMjYvNDI1NTc1MzgzLTE2OTU1MmNkLThlMjAtNDQ4NS05ODYwLTdiOTgyY2NlODA2Zi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQxNjUyMTlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kNzU2YjIyNmIyNzU3NDRhNWI1NDcwMWI1OWQwNWMzNWNkMWM0NzM4ODJkZDBjZmQzN2JhNGM5ODQ0OWMzMGRkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.OGWko4O6l3qO8pJOLDgl4Z98AnlV8xXvMwXfQmjGCAg"
                       alt="Neo-Tokyo"
                       width={800}
                       height={600}
-                      className="rounded-lg border-2 border-red-800/70 w-full h-full object-cover"
+                      className="rounded-lg border-2  border-red-800/70 w-full h-full object-cover"
                     />
                   </EnhancedGlitchImage>
 
@@ -546,7 +546,7 @@ export default function Home() {
                         </span>
                       </div>
                       <div className="text-xl font-bold text-red-400">
-                        98.7%
+                        18.7%
                       </div>
                     </div>
                     <div className="bg-red-900/20 p-3 rounded border border-red-800/50">
@@ -557,7 +557,7 @@ export default function Home() {
                         </span>
                       </div>
                       <div className="text-xl font-bold text-blue-400">
-                        87.2%
+                        30.2%
                       </div>
                     </div>
                     <div className="bg-red-900/20 p-3 rounded border border-red-800/50">
@@ -566,7 +566,7 @@ export default function Home() {
                         <span className="text-xs text-gray-300">ENERGY</span>
                       </div>
                       <div className="text-xl font-bold text-yellow-400">
-                        92.5%
+                        12.5%
                       </div>
                     </div>
                     <div className="bg-red-900/20 p-3 rounded border border-red-800/50">
@@ -577,7 +577,7 @@ export default function Home() {
                         </span>
                       </div>
                       <div className="text-xl font-bold text-green-400">
-                        95.1%
+                        60.1%
                       </div>
                     </div>
                   </div>
