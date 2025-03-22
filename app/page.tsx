@@ -20,13 +20,13 @@ import {
   Zap,
 } from "lucide-react";
 import NeonText from "../components/neon-text";
-import EnhancedGlitchImage from "@/components/enhanced-glitch-image";
-import PsychicEnergy from "@/components/psychic-energy";
-import AkiraButton from "@/components/akira-button";
-import BikeTrail from "@/components/bike-trail";
+import EnhancedGlitchImage from "../components/enhanced-glitch-image";
+import PsychicEnergy from "../components/psychic-energy";
+import AkiraButton from "../components/akira-button";
+import BikeTrail from "../components/bike-trail";
 import dynamic from "next/dynamic";
-import UnifiedNavigation from "@/components/unified-navigation";
-import TechShowcase from "@/components/tech-showcase";
+import UnifiedNavigation from "../components/unified-navigation";
+import TechShowcase from "../components/tech-showcase";
 // nmdf
 // Replace the direct imports of heavy components with lazy loaded versions
 const NeoTokyoShowcase = dynamic(
