@@ -30,7 +30,7 @@ import TechShowcase from "../components/tech-showcase";
 // nmdf
 // Replace the direct imports of heavy components with lazy loaded versions
 const NeoTokyoShowcase = dynamic(
-  () => import("@/components/neo-tokyo-showcase"),
+  () => import("../components/neo-tokyo-showcase"),
   {
     loading: () => (
       <div className="w-full h-[400px] bg-black/50 animate-pulse rounded-lg border border-red-800/50"></div>
@@ -112,7 +112,7 @@ const technologies = [
   },
 ];
 const DataTransmission = dynamic(
-  () => import("@/components/data-transmission"),
+  () => import("../components/data-transmission"),
   {
     loading: () => (
       <div className="w-full h-[400px] bg-black/50 animate-pulse rounded-lg border border-red-800/50"></div>
@@ -120,7 +120,7 @@ const DataTransmission = dynamic(
   }
 );
 
-const CityScape = dynamic(() => import("@/components/city-scape"), {
+const CityScape = dynamic(() => import("../components/city-scape"), {
   ssr: false, // Disable SSR for canvas-based components
 });
 
