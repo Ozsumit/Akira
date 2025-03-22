@@ -19,7 +19,7 @@ import {
   Database,
   Zap,
 } from "lucide-react";
-import NeonText from "@/components/neon-text";
+import NeonText from "../components/neon-text";
 import EnhancedGlitchImage from "@/components/enhanced-glitch-image";
 import PsychicEnergy from "@/components/psychic-energy";
 import AkiraButton from "@/components/akira-button";
@@ -158,7 +158,7 @@ export default function Home() {
       title: "Crescent Moon",
       description:
         "Discover cinematic magic, one frame at a time. Your ultimate destination for endless entertainment.",
-      tags: ["Next.js", "Javascript", "api"],
+      tags: ["Next.js", "Javascript", "TMDB API", "Tailwind CSS"],
       image:
         "https://private-user-images.githubusercontent.com/129023326/425557834-7f29c0cd-9cfe-400f-821c-b1bc5f360f49.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1NzM2OTEsIm5iZiI6MTc0MjU3MzM5MSwicGF0aCI6Ii8xMjkwMjMzMjYvNDI1NTU3ODM0LTdmMjljMGNkLTljZmUtNDAwZi04MjFjLWIxYmM1ZjM2MGY0OS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQxNjA5NTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zZmM1OTY4YTI4M2U0ODY1MjUzYjM1YTcwYzM0ODM3NzgyNjM2YTI1MTMyY2FkMzY0MGI4YjZhMjJkMDI3NDRhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.-1NA0uhFwF8M6z0mgziyiz2KU_gaLXf8NpHqpl8J9gU",
       // Add more details as needed:
