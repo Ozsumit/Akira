@@ -1,45 +1,55 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react";
+import { cn } from "../lib/utils";
 
 interface GlitchImageProps {
-  children: React.ReactNode
-  className?: string
-  intensity?: "low" | "medium" | "high"
+  children: React.ReactNode;
+  className?: string;
+  intensity?: "low" | "medium" | "high";
 }
 
-export default function GlitchImage({ children, className, intensity = "medium" }: GlitchImageProps) {
-  const [isGlitching, setIsGlitching] = useState(false)
+export default function GlitchImage({
+  children,
+  className,
+  intensity = "medium",
+}: GlitchImageProps) {
+  const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
     const glitchInterval = setInterval(() => {
       if (Math.random() > 0.9) {
-        setIsGlitching(true)
-        setTimeout(() => setIsGlitching(false), 150 + Math.random() * 200)
+        setIsGlitching(true);
+        setTimeout(() => setIsGlitching(false), 150 + Math.random() * 200);
       }
-    }, 2000)
+    }, 2000);
 
-    return () => clearInterval(glitchInterval)
-  }, [])
+    return () => clearInterval(glitchInterval);
+  }, []);
 
   const getIntensityClass = () => {
     switch (intensity) {
       case "low":
-        return "glitch-effect-low"
+        return "glitch-effect-low";
       case "medium":
-        return "glitch-effect-medium"
+        return "glitch-effect-medium";
       case "high":
-        return "glitch-effect-high"
+        return "glitch-effect-high";
       default:
-        return "glitch-effect-medium"
+        return "glitch-effect-medium";
     }
-  }
+  };
 
   return (
-    <div className={cn("relative overflow-hidden", isGlitching && getIntensityClass(), className)}>
+    <div
+      className={cn(
+        "relative overflow-hidden",
+        isGlitching && getIntensityClass(),
+        className
+      )}
+    >
       {children}
 
       {isGlitching && (
@@ -49,6 +59,5 @@ export default function GlitchImage({ children, className, intensity = "medium" 
         </>
       )}
     </div>
-  )
+  );
 }
-

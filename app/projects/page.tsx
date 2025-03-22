@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import NeonText from "@/components/neon-text";
-import GlitchImage from "@/components/glitch-image";
-import PsychicEnergy from "@/components/psychic-energy";
+import { Button } from "../../components/ui/button";
+import NeonText from "../../components/neon-text";
+import GlitchImage from "../../components/glitch-image";
+import PsychicEnergy from "../../components/psychic-energy";
 
 export default function ProjectsPage() {
   const projects = [

@@ -1,56 +1,56 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import GlitchImage from "@/components/glitch-image"
-import NeonText from "@/components/neon-text"
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "../components/ui/button";
+import GlitchImage from "../components/glitch-image";
+import NeonText from "../components/neon-text";
 
 interface Project {
-  id: number
-  title: string
-  description: string
-  tags: string[]
-  image: string
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
 }
 
 interface FilmStripProps {
-  projects: Project[]
+  projects: Project[];
 }
 
 export default function FilmStrip({ projects }: FilmStripProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const nextProject = () => {
-    if (isAnimating) return
-    setDirection(1)
-    setIsAnimating(true)
-    setCurrentIndex((prev) => (prev + 1) % projects.length)
-  }
+    if (isAnimating) return;
+    setDirection(1);
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
 
   const prevProject = () => {
-    if (isAnimating) return
-    setDirection(-1)
-    setIsAnimating(true)
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
-  }
+    if (isAnimating) return;
+    setDirection(-1);
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
 
   // Auto-play effect
   useEffect(() => {
     const interval = setInterval(() => {
-      nextProject()
-    }, 8000)
+      nextProject();
+    }, 8000);
 
-    return () => clearInterval(interval)
-  }, [currentIndex, isAnimating])
+    return () => clearInterval(interval);
+  }, [currentIndex, isAnimating]);
 
-  const currentProject = projects[currentIndex]
+  const currentProject = projects[currentIndex];
 
   const variants = {
     enter: (direction: number) => ({
@@ -74,25 +74,35 @@ export default function FilmStrip({ projects }: FilmStripProps) {
         duration: 0.5,
       },
     }),
-  }
+  };
 
   return (
     <div className="relative overflow-hidden" ref={containerRef}>
       {/* Film strip holes */}
       <div className="absolute top-0 left-0 w-full h-12 bg-black z-10 flex justify-between px-8">
         {Array.from({ length: 15 }).map((_, i) => (
-          <div key={i} className="w-8 h-8 rounded-full bg-gray-900 border border-gray-800 my-2"></div>
+          <div
+            key={i}
+            className="w-8 h-8 rounded-full bg-gray-900 border border-gray-800 my-2"
+          ></div>
         ))}
       </div>
       <div className="absolute bottom-0 left-0 w-full h-12 bg-black z-10 flex justify-between px-8">
         {Array.from({ length: 15 }).map((_, i) => (
-          <div key={i} className="w-8 h-8 rounded-full bg-gray-900 border border-gray-800 my-2"></div>
+          <div
+            key={i}
+            className="w-8 h-8 rounded-full bg-gray-900 border border-gray-800 my-2"
+          ></div>
         ))}
       </div>
 
       {/* Film content */}
       <div className="pt-12 pb-12 relative">
-        <AnimatePresence initial={false} custom={direction} onExitComplete={() => setIsAnimating(false)}>
+        <AnimatePresence
+          initial={false}
+          custom={direction}
+          onExitComplete={() => setIsAnimating(false)}
+        >
           <motion.div
             key={currentIndex}
             custom={direction}
@@ -128,18 +138,25 @@ export default function FilmStrip({ projects }: FilmStripProps) {
                     <NeonText color="red">{currentProject.title}</NeonText>
                   </h3>
 
-                  <p className="text-gray-300 mb-6">{currentProject.description}</p>
+                  <p className="text-gray-300 mb-6">
+                    {currentProject.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-2 mb-8">
                     {currentProject.tags.map((tag, i) => (
-                      <span key={i} className="text-xs px-2 py-1 rounded-full bg-red-900/30 text-red-300">
+                      <span
+                        key={i}
+                        className="text-xs px-2 py-1 rounded-full bg-red-900/30 text-red-300"
+                      >
                         {tag}
                       </span>
                     ))}
                   </div>
 
                   <Link href={`/projects/${currentProject.id}`}>
-                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white">VIEW PROJECT DETAILS</Button>
+                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                      VIEW PROJECT DETAILS
+                    </Button>
                   </Link>
                 </div>
               </div>
@@ -175,18 +192,19 @@ export default function FilmStrip({ projects }: FilmStripProps) {
           <button
             key={i}
             className={`w-3 h-3 rounded-full transition-all ${
-              i === currentIndex ? "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.7)]" : "bg-gray-600 hover:bg-gray-400"
+              i === currentIndex
+                ? "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.7)]"
+                : "bg-gray-600 hover:bg-gray-400"
             }`}
             onClick={() => {
-              if (isAnimating) return
-              setDirection(i > currentIndex ? 1 : -1)
-              setIsAnimating(true)
-              setCurrentIndex(i)
+              if (isAnimating) return;
+              setDirection(i > currentIndex ? 1 : -1);
+              setIsAnimating(true);
+              setCurrentIndex(i);
             }}
           />
         ))}
       </div>
     </div>
-  )
+  );
 }
-

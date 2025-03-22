@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef, memo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink } from "lucide-react"
-import NeonText from "@/components/neon-text"
-import { cn } from "@/lib/utils"
+import { useState, useRef, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import NeonText from "../components/neon-text";
+import { cn } from "../lib/utils";
 
 interface Technology {
-  name: string
-  description: string
-  icon: React.ReactNode
-  category: string
-  level: number
-  link?: string
+  name: string;
+  description: string;
+  icon: React.ReactNode;
+  category: string;
+  level: number;
+  link?: string;
 }
 
 interface TechShowcaseProps {
-  technologies: Technology[]
-  className?: string
+  technologies: Technology[];
+  className?: string;
 }
 
 // Memoized tech card component
@@ -28,15 +28,15 @@ const TechCard = memo(function TechCard({
   isActive,
   onClick,
 }: {
-  tech: Technology
-  isActive: boolean
-  onClick: () => void
+  tech: Technology;
+  isActive: boolean;
+  onClick: () => void;
 }) {
   return (
     <motion.div
       className={cn(
         "relative cursor-pointer transition-all duration-300 transform-gpu",
-        isActive ? "scale-105 z-10" : "scale-100 hover:scale-[1.02]",
+        isActive ? "scale-105 z-10" : "scale-100 hover:scale-[1.02]"
       )}
       onClick={onClick}
       layout
@@ -52,10 +52,10 @@ const TechCard = memo(function TechCard({
           tech.category === "frontend"
             ? "from-red-600/30 to-red-900/30"
             : tech.category === "animation"
-              ? "from-blue-600/30 to-blue-900/30"
-              : tech.category === "3d"
-                ? "from-purple-600/30 to-purple-900/30"
-                : "from-green-600/30 to-green-900/30",
+            ? "from-blue-600/30 to-blue-900/30"
+            : tech.category === "3d"
+            ? "from-purple-600/30 to-purple-900/30"
+            : "from-green-600/30 to-green-900/30"
         )}
       ></div>
 
@@ -65,10 +65,10 @@ const TechCard = memo(function TechCard({
           tech.category === "frontend"
             ? "border-red-800/70"
             : tech.category === "animation"
-              ? "border-blue-800/70"
-              : tech.category === "3d"
-                ? "border-purple-800/70"
-                : "border-green-800/70",
+            ? "border-blue-800/70"
+            : tech.category === "3d"
+            ? "border-purple-800/70"
+            : "border-green-800/70"
         )}
       >
         <div className="flex items-center gap-3 mb-3">
@@ -77,10 +77,10 @@ const TechCard = memo(function TechCard({
               tech.category === "frontend"
                 ? "text-red-400"
                 : tech.category === "animation"
-                  ? "text-blue-400"
-                  : tech.category === "3d"
-                    ? "text-purple-400"
-                    : "text-green-400",
+                ? "text-blue-400"
+                : tech.category === "3d"
+                ? "text-purple-400"
+                : "text-green-400"
             )}
           >
             {tech.icon}
@@ -91,10 +91,10 @@ const TechCard = memo(function TechCard({
               tech.category === "frontend"
                 ? "text-red-400"
                 : tech.category === "animation"
-                  ? "text-blue-400"
-                  : tech.category === "3d"
-                    ? "text-purple-400"
-                    : "text-green-400",
+                ? "text-blue-400"
+                : tech.category === "3d"
+                ? "text-purple-400"
+                : "text-green-400"
             )}
           >
             {tech.name}
@@ -119,10 +119,10 @@ const TechCard = memo(function TechCard({
                     tech.category === "frontend"
                       ? "text-red-400"
                       : tech.category === "animation"
-                        ? "text-blue-400"
-                        : tech.category === "3d"
-                          ? "text-purple-400"
-                          : "text-green-400",
+                      ? "text-blue-400"
+                      : tech.category === "3d"
+                      ? "text-purple-400"
+                      : "text-green-400"
                   )}
                 >
                   {tech.level}%
@@ -135,10 +135,10 @@ const TechCard = memo(function TechCard({
                     tech.category === "frontend"
                       ? "bg-gradient-to-r from-red-900 to-red-500"
                       : tech.category === "animation"
-                        ? "bg-gradient-to-r from-blue-900 to-blue-500"
-                        : tech.category === "3d"
-                          ? "bg-gradient-to-r from-purple-900 to-purple-500"
-                          : "bg-gradient-to-r from-green-900 to-green-500",
+                      ? "bg-gradient-to-r from-blue-900 to-blue-500"
+                      : tech.category === "3d"
+                      ? "bg-gradient-to-r from-purple-900 to-purple-500"
+                      : "bg-gradient-to-r from-green-900 to-green-500"
                   )}
                   initial={{ width: 0 }}
                   animate={{ width: `${tech.level}%` }}
@@ -159,10 +159,10 @@ const TechCard = memo(function TechCard({
                   tech.category === "frontend"
                     ? "text-red-400 hover:text-red-300"
                     : tech.category === "animation"
-                      ? "text-blue-400 hover:text-blue-300"
-                      : tech.category === "3d"
-                        ? "text-purple-400 hover:text-purple-300"
-                        : "text-green-400 hover:text-green-300",
+                    ? "text-blue-400 hover:text-blue-300"
+                    : tech.category === "3d"
+                    ? "text-purple-400 hover:text-purple-300"
+                    : "text-green-400 hover:text-green-300"
                 )}
               >
                 <ExternalLink className="h-3 w-3" /> Learn more
@@ -172,8 +172,8 @@ const TechCard = memo(function TechCard({
         )}
       </div>
     </motion.div>
-  )
-})
+  );
+});
 
 // Category filter component
 const CategoryFilter = memo(function CategoryFilter({
@@ -181,9 +181,9 @@ const CategoryFilter = memo(function CategoryFilter({
   activeCategory,
   onSelectCategory,
 }: {
-  categories: string[]
-  activeCategory: string | null
-  onSelectCategory: (category: string | null) => void
+  categories: string[];
+  activeCategory: string | null;
+  onSelectCategory: (category: string | null) => void;
 }) {
   return (
     <div className="flex flex-wrap gap-3 mb-8 justify-center">
@@ -192,7 +192,7 @@ const CategoryFilter = memo(function CategoryFilter({
           "px-3 py-1 text-sm rounded-full border transition-colors",
           activeCategory === null
             ? "bg-white/10 border-white/50 text-white"
-            : "bg-transparent border-gray-700 text-gray-400 hover:text-white hover:border-gray-500",
+            : "bg-transparent border-gray-700 text-gray-400 hover:text-white hover:border-gray-500"
         )}
         onClick={() => onSelectCategory(null)}
       >
@@ -208,11 +208,11 @@ const CategoryFilter = memo(function CategoryFilter({
               ? category === "frontend"
                 ? "bg-red-900/30 border-red-700 text-red-400"
                 : category === "animation"
-                  ? "bg-blue-900/30 border-blue-700 text-blue-400"
-                  : category === "3d"
-                    ? "bg-purple-900/30 border-purple-700 text-purple-400"
-                    : "bg-green-900/30 border-green-700 text-green-400"
-              : "bg-transparent border-gray-700 text-gray-400 hover:text-white hover:border-gray-500",
+                ? "bg-blue-900/30 border-blue-700 text-blue-400"
+                : category === "3d"
+                ? "bg-purple-900/30 border-purple-700 text-purple-400"
+                : "bg-green-900/30 border-green-700 text-green-400"
+              : "bg-transparent border-gray-700 text-gray-400 hover:text-white hover:border-gray-500"
           )}
           onClick={() => onSelectCategory(category)}
         >
@@ -220,33 +220,38 @@ const CategoryFilter = memo(function CategoryFilter({
         </button>
       ))}
     </div>
-  )
-})
+  );
+});
 
 // Main component
-const TechShowcase = memo(function TechShowcase({ technologies, className }: TechShowcaseProps) {
-  const [activeTech, setActiveTech] = useState<Technology | null>(null)
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+const TechShowcase = memo(function TechShowcase({
+  technologies,
+  className,
+}: TechShowcaseProps) {
+  const [activeTech, setActiveTech] = useState<Technology | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Extract unique categories
-  const categories = Array.from(new Set(technologies.map((tech) => tech.category)))
+  const categories = Array.from(
+    new Set(technologies.map((tech) => tech.category))
+  );
 
   // Filter technologies by category
   const filteredTechnologies = activeCategory
     ? technologies.filter((tech) => tech.category === activeCategory)
-    : technologies
+    : technologies;
 
   // Handle tech selection
   const handleTechClick = (tech: Technology) => {
-    setActiveTech(activeTech?.name === tech.name ? null : tech)
-  }
+    setActiveTech(activeTech?.name === tech.name ? null : tech);
+  };
 
   // Handle category selection
   const handleCategorySelect = (category: string | null) => {
-    setActiveCategory(category)
-    setActiveTech(null)
-  }
+    setActiveCategory(category);
+    setActiveTech(null);
+  };
 
   return (
     <div ref={containerRef} className={cn("relative", className)}>
@@ -255,13 +260,17 @@ const TechShowcase = memo(function TechShowcase({ technologies, className }: Tec
           <NeonText color="blue">TECHNOLOGIES</NeonText>
         </h2>
         <p className="text-gray-300 max-w-2xl mx-auto">
-          The digital arsenal powering my Neo-Tokyo creations. Each technology is a weapon in the fight against digital
-          mediocrity.
+          The digital arsenal powering my Neo-Tokyo creations. Each technology
+          is a weapon in the fight against digital mediocrity.
         </p>
       </div>
 
       {/* Category filters */}
-      <CategoryFilter categories={categories} activeCategory={activeCategory} onSelectCategory={handleCategorySelect} />
+      <CategoryFilter
+        categories={categories}
+        activeCategory={activeCategory}
+        onSelectCategory={handleCategorySelect}
+      />
 
       {/* Tech grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -315,17 +324,25 @@ const TechShowcase = memo(function TechShowcase({ technologies, className }: Tec
                 tech.category === "frontend"
                   ? "bg-red-500"
                   : tech.category === "animation"
-                    ? "bg-blue-500"
-                    : tech.category === "3d"
-                      ? "bg-purple-500"
-                      : "bg-green-500",
+                  ? "bg-blue-500"
+                  : tech.category === "3d"
+                  ? "bg-purple-500"
+                  : "bg-green-500"
               )}
               initial={{ opacity: 0, scale: 0 }}
               animate={{
                 opacity: 1,
                 scale: 1,
-                x: `calc(${Math.cos(index * ((2 * Math.PI) / filteredTechnologies.length)) * 40}% - 6px)`,
-                y: `calc(${Math.sin(index * ((2 * Math.PI) / filteredTechnologies.length)) * 40}% - 6px)`,
+                x: `calc(${
+                  Math.cos(
+                    index * ((2 * Math.PI) / filteredTechnologies.length)
+                  ) * 40
+                }% - 6px)`,
+                y: `calc(${
+                  Math.sin(
+                    index * ((2 * Math.PI) / filteredTechnologies.length)
+                  ) * 40
+                }% - 6px)`,
               }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.5 }}
@@ -336,10 +353,10 @@ const TechShowcase = memo(function TechShowcase({ technologies, className }: Tec
                   tech.category === "frontend"
                     ? "0 0 10px rgba(239, 68, 68, 0.7)"
                     : tech.category === "animation"
-                      ? "0 0 10px rgba(59, 130, 246, 0.7)"
-                      : tech.category === "3d"
-                        ? "0 0 10px rgba(168, 85, 247, 0.7)"
-                        : "0 0 10px rgba(34, 197, 94, 0.7)",
+                    ? "0 0 10px rgba(59, 130, 246, 0.7)"
+                    : tech.category === "3d"
+                    ? "0 0 10px rgba(168, 85, 247, 0.7)"
+                    : "0 0 10px rgba(34, 197, 94, 0.7)",
               }}
             >
               <motion.div
@@ -349,26 +366,26 @@ const TechShowcase = memo(function TechShowcase({ technologies, className }: Tec
                     tech.category === "frontend"
                       ? "0 0 5px rgba(239, 68, 68, 0.7)"
                       : tech.category === "animation"
-                        ? "0 0 5px rgba(59, 130, 246, 0.7)"
-                        : tech.category === "3d"
-                          ? "0 0 5px rgba(168, 85, 247, 0.7)"
-                          : "0 0 5px rgba(34, 197, 94, 0.7)",
+                      ? "0 0 5px rgba(59, 130, 246, 0.7)"
+                      : tech.category === "3d"
+                      ? "0 0 5px rgba(168, 85, 247, 0.7)"
+                      : "0 0 5px rgba(34, 197, 94, 0.7)",
 
                     tech.category === "frontend"
                       ? "0 0 15px rgba(239, 68, 68, 0.7)"
                       : tech.category === "animation"
-                        ? "0 0 15px rgba(59, 130, 246, 0.7)"
-                        : tech.category === "3d"
-                          ? "0 0 15px rgba(168, 85, 247, 0.7)"
-                          : "0 0 15px rgba(34, 197, 94, 0.7)",
+                      ? "0 0 15px rgba(59, 130, 246, 0.7)"
+                      : tech.category === "3d"
+                      ? "0 0 15px rgba(168, 85, 247, 0.7)"
+                      : "0 0 15px rgba(34, 197, 94, 0.7)",
 
                     tech.category === "frontend"
                       ? "0 0 5px rgba(239, 68, 68, 0.7)"
                       : tech.category === "animation"
-                        ? "0 0 5px rgba(59, 130, 246, 0.7)"
-                        : tech.category === "3d"
-                          ? "0 0 5px rgba(168, 85, 247, 0.7)"
-                          : "0 0 5px rgba(34, 197, 94, 0.7)",
+                      ? "0 0 5px rgba(59, 130, 246, 0.7)"
+                      : tech.category === "3d"
+                      ? "0 0 5px rgba(168, 85, 247, 0.7)"
+                      : "0 0 5px rgba(34, 197, 94, 0.7)",
                   ],
                 }}
                 transition={{
@@ -389,8 +406,7 @@ const TechShowcase = memo(function TechShowcase({ technologies, className }: Tec
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
-export default TechShowcase
-
+export default TechShowcase;

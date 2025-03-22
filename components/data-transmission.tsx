@@ -1,52 +1,54 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import AkiraButton from "@/components/akira-button"
-import PowerIndicator from "@/components/power-indicator"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import AkiraButton from "../components/akira-button";
+import PowerIndicator from "../components/power-indicator";
 
 export default function DataTransmission() {
-  const [isTransmitting, setIsTransmitting] = useState(false)
-  const [transmissionProgress, setTransmissionProgress] = useState(0)
+  const [isTransmitting, setIsTransmitting] = useState(false);
+  const [transmissionProgress, setTransmissionProgress] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
+  });
 
   useEffect(() => {
     if (isTransmitting) {
       const interval = setInterval(() => {
         setTransmissionProgress((prev) => {
           if (prev >= 100) {
-            clearInterval(interval)
+            clearInterval(interval);
             setTimeout(() => {
-              setIsTransmitting(false)
-              setTransmissionProgress(0)
-            }, 1000)
-            return 100
+              setIsTransmitting(false);
+              setTransmissionProgress(0);
+            }, 1000);
+            return 100;
           }
-          return prev + 5
-        })
-      }, 100)
+          return prev + 5;
+        });
+      }, 100);
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [isTransmitting])
+  }, [isTransmitting]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsTransmitting(true)
+    e.preventDefault();
+    setIsTransmitting(true);
     // In a real app, you would send the form data to your backend here
-  }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="relative">
@@ -57,7 +59,9 @@ export default function DataTransmission() {
         <div className="bg-gradient-to-r from-red-900/50 to-black border-b-2 border-red-800/50 p-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <PowerIndicator active={true} />
-            <div className="text-sm font-mono text-red-400">TRANSMISSION.TERMINAL</div>
+            <div className="text-sm font-mono text-red-400">
+              TRANSMISSION.TERMINAL
+            </div>
           </div>
           <div className="flex items-center gap-2">
             {Array.from({ length: 3 }).map((_, i) => (
@@ -142,12 +146,18 @@ export default function DataTransmission() {
               <div className="flex items-center justify-between">
                 <div className="text-xs text-gray-500 font-mono">
                   {isTransmitting ? (
-                    <span className="text-green-400">TRANSMISSION IN PROGRESS: {transmissionProgress}%</span>
+                    <span className="text-green-400">
+                      TRANSMISSION IN PROGRESS: {transmissionProgress}%
+                    </span>
                   ) : (
                     <span>READY TO TRANSMIT</span>
                   )}
                 </div>
-                <AkiraButton variant="primary" onClick={handleSubmit} disabled={isTransmitting}>
+                <AkiraButton
+                  variant="primary"
+                  onClick={handleSubmit}
+                  disabled={isTransmitting}
+                >
                   {isTransmitting ? "TRANSMITTING..." : "TRANSMIT MESSAGE"}
                 </AkiraButton>
               </div>
@@ -213,10 +223,16 @@ export default function DataTransmission() {
                 {/* Grid lines */}
                 <div className="absolute inset-0 grid grid-cols-8 grid-rows-8">
                   {Array.from({ length: 8 }).map((_, i) => (
-                    <div key={`h-${i}`} className="w-full h-px bg-red-900/30"></div>
+                    <div
+                      key={`h-${i}`}
+                      className="w-full h-px bg-red-900/30"
+                    ></div>
                   ))}
                   {Array.from({ length: 8 }).map((_, i) => (
-                    <div key={`v-${i}`} className="h-full w-px bg-red-900/30"></div>
+                    <div
+                      key={`v-${i}`}
+                      className="h-full w-px bg-red-900/30"
+                    ></div>
                   ))}
                 </div>
               </div>
@@ -224,8 +240,12 @@ export default function DataTransmission() {
 
             {/* Status indicators */}
             <div className="absolute bottom-4 left-4 right-4">
-              <div className="text-xs font-mono text-green-400">SIGNAL STRENGTH: OPTIMAL</div>
-              <div className="text-xs font-mono text-blue-400">ENCRYPTION: ENABLED</div>
+              <div className="text-xs font-mono text-green-400">
+                SIGNAL STRENGTH: OPTIMAL
+              </div>
+              <div className="text-xs font-mono text-blue-400">
+                ENCRYPTION: ENABLED
+              </div>
               <div className="text-xs font-mono text-red-400">
                 STATUS: {isTransmitting ? "TRANSMITTING" : "STANDBY"}
               </div>
@@ -245,9 +265,12 @@ export default function DataTransmission() {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10">
             <div className="max-w-md w-full p-6">
               <div className="text-center mb-4">
-                <div className="text-xl font-bold text-red-500 mb-2">TRANSMITTING MESSAGE</div>
+                <div className="text-xl font-bold text-red-500 mb-2">
+                  TRANSMITTING MESSAGE
+                </div>
                 <div className="text-sm text-gray-400">
-                  Please wait while your message is being encrypted and transmitted...
+                  Please wait while your message is being encrypted and
+                  transmitted...
                 </div>
               </div>
 
@@ -260,16 +283,19 @@ export default function DataTransmission() {
                 </div>
               </div>
 
-              <div className="text-center text-sm font-mono text-red-400">{transmissionProgress}% COMPLETE</div>
+              <div className="text-center text-sm font-mono text-red-400">
+                {transmissionProgress}% COMPLETE
+              </div>
 
               {transmissionProgress === 100 && (
-                <div className="text-center mt-4 text-green-500">TRANSMISSION COMPLETE</div>
+                <div className="text-center mt-4 text-green-500">
+                  TRANSMISSION COMPLETE
+                </div>
               )}
             </div>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
-

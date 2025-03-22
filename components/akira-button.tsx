@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, useRef, memo } from "react"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { useState, useEffect, useRef, memo } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { cn } from "../lib/utils";
 
 interface AkiraButtonProps {
-  children: React.ReactNode
-  href?: string
-  variant?: "primary" | "secondary" | "danger" | "icon"
-  className?: string
-  target?: string
-  onClick?: () => void
-  disabled?: boolean
-  size?: "sm" | "md" | "lg"
+  children: React.ReactNode;
+  href?: string;
+  variant?: "primary" | "secondary" | "danger" | "icon";
+  className?: string;
+  target?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  size?: "sm" | "md" | "lg";
 }
 
 const AkiraButton = memo(function AkiraButton({
@@ -28,33 +28,33 @@ const AkiraButton = memo(function AkiraButton({
   disabled = false,
   size = "md",
 }: AkiraButtonProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [isPressed, setIsPressed] = useState(false)
-  const [glitchActive, setGlitchActive] = useState(false)
-  const [dataFlowActive, setDataFlowActive] = useState(false)
-  const [powerLevel] = useState(Math.floor(Math.random() * 30) + 70)
-  const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null)
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+  const [glitchActive, setGlitchActive] = useState(false);
+  const [dataFlowActive, setDataFlowActive] = useState(false);
+  const [powerLevel] = useState(Math.floor(Math.random() * 30) + 70);
+  const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
 
   // Random glitch effect
   useEffect(() => {
     if (isHovered) {
       // Activate data flow
-      setDataFlowActive(true)
+      setDataFlowActive(true);
 
       // Random glitch effect
       const glitchInterval = setInterval(() => {
         if (Math.random() > 0.7) {
-          setGlitchActive(true)
-          setTimeout(() => setGlitchActive(false), 150)
+          setGlitchActive(true);
+          setTimeout(() => setGlitchActive(false), 150);
         }
-      }, 1000)
+      }, 1000);
 
       return () => {
-        clearInterval(glitchInterval)
-        setDataFlowActive(false)
-      }
+        clearInterval(glitchInterval);
+        setDataFlowActive(false);
+      };
     }
-  }, [isHovered])
+  }, [isHovered]);
 
   const getVariantStyles = () => {
     switch (variant) {
@@ -67,7 +67,7 @@ const AkiraButton = memo(function AkiraButton({
           text: "text-white",
           highlight: "bg-red-400/20",
           accent: "bg-red-500",
-        }
+        };
       case "secondary":
         return {
           base: "bg-gradient-to-r from-gray-900 to-gray-800 text-red-400",
@@ -77,7 +77,7 @@ const AkiraButton = memo(function AkiraButton({
           text: "text-red-400",
           highlight: "bg-red-400/10",
           accent: "bg-red-900",
-        }
+        };
       case "danger":
         return {
           base: "bg-gradient-to-r from-red-900 to-black text-red-400",
@@ -87,7 +87,7 @@ const AkiraButton = memo(function AkiraButton({
           text: "text-red-400",
           highlight: "bg-red-400/10",
           accent: "bg-red-700",
-        }
+        };
       case "icon":
         return {
           base: "bg-black text-red-400",
@@ -97,7 +97,7 @@ const AkiraButton = memo(function AkiraButton({
           text: "text-red-400",
           highlight: "bg-red-400/10",
           accent: "bg-red-900",
-        }
+        };
       default:
         return {
           base: "bg-gradient-to-r from-red-900 to-red-700 text-white",
@@ -107,38 +107,38 @@ const AkiraButton = memo(function AkiraButton({
           text: "text-white",
           highlight: "bg-red-400/20",
           accent: "bg-red-500",
-        }
+        };
     }
-  }
+  };
 
   const getSizeClasses = () => {
     switch (size) {
       case "sm":
-        return variant === "icon" ? "w-8 h-8" : "px-3 py-1.5 text-sm"
+        return variant === "icon" ? "w-8 h-8" : "px-3 py-1.5 text-sm";
       case "lg":
-        return variant === "icon" ? "w-12 h-12" : "px-8 py-4 text-lg"
+        return variant === "icon" ? "w-12 h-12" : "px-8 py-4 text-lg";
       default:
-        return variant === "icon" ? "w-10 h-10" : "px-6 py-3"
+        return variant === "icon" ? "w-10 h-10" : "px-6 py-3";
     }
-  }
+  };
 
-  const styles = getVariantStyles()
-  const sizeClasses = getSizeClasses()
+  const styles = getVariantStyles();
+  const sizeClasses = getSizeClasses();
 
   // Create asymmetrical clip path inspired by Akira interfaces
   // This creates an irregular shape with aggressive angles
   const clipPath =
     variant === "icon"
       ? "polygon(0% 20%, 20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%)"
-      : "polygon(0% 30%, 15% 0%, 85% 0%, 100% 30%, 95% 100%, 5% 100%)"
+      : "polygon(0% 30%, 15% 0%, 85% 0%, 100% 30%, 95% 100%, 5% 100%)";
 
   const buttonClasses = cn(
     "relative overflow-hidden transition-all duration-300 flex items-center justify-center",
     styles.text,
     disabled ? "opacity-50 cursor-not-allowed" : "hover:scale-105",
     sizeClasses,
-    className,
-  )
+    className
+  );
 
   const ButtonContent = () => (
     <>
@@ -148,7 +148,7 @@ const AkiraButton = memo(function AkiraButton({
           className={cn(
             "absolute inset-0 transition-all duration-300",
             styles.base,
-            isHovered && !disabled && styles.hover,
+            isHovered && !disabled && styles.hover
           )}
         ></div>
 
@@ -188,19 +188,33 @@ const AkiraButton = memo(function AkiraButton({
               className="absolute h-[1px] bg-red-400/70 z-10"
               style={{ width: 10, top: "30%", left: -10 }}
               animate={{ left: "100%" }}
-              transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+              transition={{
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+              }}
             />
             <motion.div
               className="absolute h-[1px] bg-red-400/70 z-10"
               style={{ width: 20, top: "60%", left: -20 }}
               animate={{ left: "100%" }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear", delay: 0.5 }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+                delay: 0.5,
+              }}
             />
             <motion.div
               className="absolute h-[1px] bg-blue-400/70 z-10"
               style={{ width: 15, top: "80%", left: -15 }}
               animate={{ left: "100%" }}
-              transition={{ duration: 1.8, repeat: Number.POSITIVE_INFINITY, ease: "linear", delay: 0.8 }}
+              transition={{
+                duration: 1.8,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+                delay: 0.8,
+              }}
             />
           </>
         )}
@@ -244,7 +258,7 @@ const AkiraButton = memo(function AkiraButton({
         className={cn(
           "relative z-10 flex items-center justify-center",
           variant === "icon" ? "" : "px-2",
-          glitchActive && "animate-[glitch-low_0.2s_ease]",
+          glitchActive && "animate-[glitch-low_0.2s_ease]"
         )}
       >
         {children}
@@ -256,7 +270,7 @@ const AkiraButton = memo(function AkiraButton({
           "absolute inset-0 opacity-0 transition-opacity duration-200",
           styles.highlight,
           isHovered && !disabled && "opacity-100",
-          isPressed && !disabled && "opacity-70",
+          isPressed && !disabled && "opacity-70"
         )}
         style={{ clipPath }}
       ></div>
@@ -266,7 +280,7 @@ const AkiraButton = memo(function AkiraButton({
         className={cn(
           "absolute inset-0 opacity-0 transition-all duration-300",
           isHovered && !disabled && "opacity-100 blur-md",
-          isPressed && !disabled && "opacity-70",
+          isPressed && !disabled && "opacity-70"
         )}
         style={{
           boxShadow: `0 0 15px ${styles.glow}`,
@@ -277,7 +291,10 @@ const AkiraButton = memo(function AkiraButton({
 
       {/* Scan line effect */}
       {isHovered && !disabled && (
-        <div className="absolute inset-0 bg-scan-lines opacity-30 pointer-events-none" style={{ clipPath }}></div>
+        <div
+          className="absolute inset-0 bg-scan-lines opacity-30 pointer-events-none"
+          style={{ clipPath }}
+        ></div>
       )}
 
       {/* Accent corner */}
@@ -295,20 +312,27 @@ const AkiraButton = memo(function AkiraButton({
           <div className="absolute inset-0 bg-red-600/30 blur-lg"></div>
           <motion.div
             className="absolute top-1/2 left-0 h-[1px] bg-red-500 -translate-y-1/2"
-            style={{ width: "100%", boxShadow: "0 0 8px 2px rgba(239, 68, 68, 0.8)" }}
+            style={{
+              width: "100%",
+              boxShadow: "0 0 8px 2px rgba(239, 68, 68, 0.8)",
+            }}
             animate={{ scaleX: [0, 1], opacity: [0, 1, 0] }}
-            transition={{ duration: 0.5, repeat: Number.POSITIVE_INFINITY, repeatDelay: 0.5 }}
+            transition={{
+              duration: 0.5,
+              repeat: Number.POSITIVE_INFINITY,
+              repeatDelay: 0.5,
+            }}
           />
         </div>
       )}
     </>
-  )
+  );
 
   // Event handlers
-  const handleMouseEnter = () => !disabled && setIsHovered(true)
-  const handleMouseLeave = () => !disabled && setIsHovered(false)
-  const handleMouseDown = () => !disabled && setIsPressed(true)
-  const handleMouseUp = () => !disabled && setIsPressed(false)
+  const handleMouseEnter = () => !disabled && setIsHovered(true);
+  const handleMouseLeave = () => !disabled && setIsHovered(false);
+  const handleMouseDown = () => !disabled && setIsPressed(true);
+  const handleMouseUp = () => !disabled && setIsPressed(false);
 
   // Render as link or button
   if (href) {
@@ -325,7 +349,7 @@ const AkiraButton = memo(function AkiraButton({
       >
         <ButtonContent />
       </Link>
-    )
+    );
   }
 
   return (
@@ -341,8 +365,7 @@ const AkiraButton = memo(function AkiraButton({
     >
       <ButtonContent />
     </button>
-  )
-})
+  );
+});
 
-export default AkiraButton
-
+export default AkiraButton;

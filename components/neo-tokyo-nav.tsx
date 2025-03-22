@@ -1,47 +1,52 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "../lib/utils";
 
 interface NeoTokyoNavProps {
-  activeSection: string
-  className?: string
+  activeSection: string;
+  className?: string;
 }
 
-export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavProps) {
-  const [isVisible, setIsVisible] = useState(false)
+export default function NeoTokyoNav({
+  activeSection,
+  className,
+}: NeoTokyoNavProps) {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
+        setIsVisible(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 80, // Account for fixed header
         behavior: "smooth",
-      })
+      });
     }
-  }
+  };
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
-  const sections = ["home", "about", "projects", "skills", "contact"]
-  const activeIndex = sections.indexOf(activeSection)
+  const sections = ["home", "about", "projects", "skills", "contact"];
+  const activeIndex = sections.indexOf(activeSection);
 
   return (
-    <div className={cn("fixed right-8 top-1/2 -translate-y-1/2 z-50", className)}>
+    <div
+      className={cn("fixed right-8 top-1/2 -translate-y-1/2 z-50", className)}
+    >
       <div className="relative">
         {/* Bike light effect */}
         <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-red-600/30 rounded-full blur-xl animate-pulse"></div>
@@ -66,7 +71,9 @@ export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavPro
                 <motion.div
                   className={cn(
                     "absolute inset-0 rounded-md",
-                    activeSection === section ? "bg-red-900/50" : "bg-gray-900/50 group-hover:bg-gray-800/50",
+                    activeSection === section
+                      ? "bg-red-900/50"
+                      : "bg-gray-900/50 group-hover:bg-gray-800/50"
                   )}
                   layoutId="navButtonBg"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -77,7 +84,9 @@ export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavPro
                   <motion.div
                     className={cn(
                       "w-3 h-3 rounded-full",
-                      activeSection === section ? "bg-red-500" : "bg-gray-600 group-hover:bg-gray-400",
+                      activeSection === section
+                        ? "bg-red-500"
+                        : "bg-gray-600 group-hover:bg-gray-400"
                     )}
                     animate={{
                       boxShadow:
@@ -91,7 +100,10 @@ export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavPro
                     }}
                     transition={{
                       duration: 1.5,
-                      repeat: activeSection === section ? Number.POSITIVE_INFINITY : 0,
+                      repeat:
+                        activeSection === section
+                          ? Number.POSITIVE_INFINITY
+                          : 0,
                       repeatType: "reverse",
                     }}
                   />
@@ -112,7 +124,9 @@ export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavPro
                       <div
                         className={cn(
                           "text-xs uppercase tracking-wider font-mono",
-                          activeSection === section ? "text-red-500" : "text-gray-500 group-hover:text-gray-300",
+                          activeSection === section
+                            ? "text-red-500"
+                            : "text-gray-500 group-hover:text-gray-300"
                         )}
                       >
                         {section}
@@ -127,7 +141,11 @@ export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavPro
                     <motion.div
                       className="absolute inset-0 bg-red-500"
                       layoutId="activeIndicator"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                        duration: 0.6,
+                      }}
                     />
                   )}
                 </div>
@@ -173,6 +191,5 @@ export default function NeoTokyoNav({ activeSection, className }: NeoTokyoNavPro
         </div>
       </div>
     </div>
-  )
+  );
 }
-

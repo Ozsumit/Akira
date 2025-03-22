@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { cn } from "../lib/utils";
 
 interface AkiraButtonProps {
-  children: React.ReactNode
-  href?: string
-  variant?: "primary" | "secondary" | "icon" | "danger"
-  className?: string
-  target?: string
-  onClick?: () => void
-  disabled?: boolean
+  children: React.ReactNode;
+  href?: string;
+  variant?: "primary" | "secondary" | "icon" | "danger";
+  className?: string;
+  target?: string;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
 export default function CapsuleButton({
@@ -26,23 +26,23 @@ export default function CapsuleButton({
   onClick,
   disabled = false,
 }: AkiraButtonProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [isPressed, setIsPressed] = useState(false)
-  const [glitchActive, setGlitchActive] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+  const [glitchActive, setGlitchActive] = useState(false);
 
   // Random glitch effect
   useEffect(() => {
     if (isHovered) {
       const interval = setInterval(() => {
         if (Math.random() > 0.7) {
-          setGlitchActive(true)
-          setTimeout(() => setGlitchActive(false), 200)
+          setGlitchActive(true);
+          setTimeout(() => setGlitchActive(false), 200);
         }
-      }, 1000)
+      }, 1000);
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [isHovered])
+  }, [isHovered]);
 
   const getVariantStyles = () => {
     switch (variant) {
@@ -54,7 +54,7 @@ export default function CapsuleButton({
           glow: "rgba(239,68,68,0.6)",
           text: "text-white",
           highlight: "bg-red-400/20",
-        }
+        };
       case "secondary":
         return {
           base: "bg-gradient-to-r from-gray-900 to-gray-800 text-red-400",
@@ -63,7 +63,7 @@ export default function CapsuleButton({
           glow: "rgba(239,68,68,0.3)",
           text: "text-red-400",
           highlight: "bg-red-400/10",
-        }
+        };
       case "danger":
         return {
           base: "bg-gradient-to-r from-red-900 to-black text-red-400",
@@ -72,7 +72,7 @@ export default function CapsuleButton({
           glow: "rgba(239,68,68,0.4)",
           text: "text-red-400",
           highlight: "bg-red-400/10",
-        }
+        };
       case "icon":
         return {
           base: "bg-black text-red-400",
@@ -81,7 +81,7 @@ export default function CapsuleButton({
           glow: "rgba(239,68,68,0.3)",
           text: "text-red-400",
           highlight: "bg-red-400/10",
-        }
+        };
       default:
         return {
           base: "bg-gradient-to-r from-red-900 to-red-700 text-white",
@@ -90,20 +90,22 @@ export default function CapsuleButton({
           glow: "rgba(239,68,68,0.6)",
           text: "text-white",
           highlight: "bg-red-400/20",
-        }
+        };
     }
-  }
+  };
 
-  const styles = getVariantStyles()
+  const styles = getVariantStyles();
 
   const buttonClasses = cn(
     "relative overflow-hidden transition-all duration-300",
-    variant === "icon" ? "w-10 h-10 flex items-center justify-center rounded-md" : "px-6 py-3",
+    variant === "icon"
+      ? "w-10 h-10 flex items-center justify-center rounded-md"
+      : "px-6 py-3",
     styles.base,
     styles.text,
     disabled ? "opacity-50 cursor-not-allowed" : "hover:scale-105",
-    className,
-  )
+    className
+  );
 
   const ButtonContent = () => (
     <>
@@ -113,7 +115,7 @@ export default function CapsuleButton({
           className={cn(
             "absolute inset-0 transition-all duration-300",
             styles.base,
-            isHovered && !disabled && styles.hover,
+            isHovered && !disabled && styles.hover
           )}
         ></div>
 
@@ -142,13 +144,22 @@ export default function CapsuleButton({
               className="absolute h-[1px] bg-red-400/70 z-10"
               style={{ width: 10, top: "30%", left: -10 }}
               animate={{ left: "100%" }}
-              transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+              transition={{
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+              }}
             />
             <motion.div
               className="absolute h-[1px] bg-red-400/70 z-10"
               style={{ width: 20, top: "60%", left: -20 }}
               animate={{ left: "100%" }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear", delay: 0.5 }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+                delay: 0.5,
+              }}
             />
           </>
         )}
@@ -159,7 +170,7 @@ export default function CapsuleButton({
         className={cn(
           "relative z-10 flex items-center justify-center",
           variant === "icon" ? "" : "pl-1 pr-2",
-          glitchActive && "animate-[glitch-low_0.2s_ease]",
+          glitchActive && "animate-[glitch-low_0.2s_ease]"
         )}
       >
         {children}
@@ -171,7 +182,7 @@ export default function CapsuleButton({
           "absolute inset-0 opacity-0 transition-opacity duration-200",
           styles.highlight,
           isHovered && !disabled && "opacity-100",
-          isPressed && !disabled && "opacity-70",
+          isPressed && !disabled && "opacity-70"
         )}
       ></div>
 
@@ -180,7 +191,7 @@ export default function CapsuleButton({
         className={cn(
           "absolute inset-0 opacity-0 transition-all duration-300 rounded-md",
           isHovered && !disabled && "opacity-100 blur-md",
-          isPressed && !disabled && "opacity-70",
+          isPressed && !disabled && "opacity-70"
         )}
         style={{
           boxShadow: `0 0 15px ${styles.glow}`,
@@ -189,15 +200,17 @@ export default function CapsuleButton({
       ></div>
 
       {/* Scan line effect */}
-      {isHovered && !disabled && <div className="absolute inset-0 bg-scan-lines opacity-30 pointer-events-none"></div>}
+      {isHovered && !disabled && (
+        <div className="absolute inset-0 bg-scan-lines opacity-30 pointer-events-none"></div>
+      )}
     </>
-  )
+  );
 
   // Event handlers
-  const handleMouseEnter = () => !disabled && setIsHovered(true)
-  const handleMouseLeave = () => !disabled && setIsHovered(false)
-  const handleMouseDown = () => !disabled && setIsPressed(true)
-  const handleMouseUp = () => !disabled && setIsPressed(false)
+  const handleMouseEnter = () => !disabled && setIsHovered(true);
+  const handleMouseLeave = () => !disabled && setIsHovered(false);
+  const handleMouseDown = () => !disabled && setIsPressed(true);
+  const handleMouseUp = () => !disabled && setIsPressed(false);
 
   // Render as link or button
   if (href) {
@@ -213,7 +226,7 @@ export default function CapsuleButton({
       >
         <ButtonContent />
       </Link>
-    )
+    );
   }
 
   return (
@@ -228,6 +241,5 @@ export default function CapsuleButton({
     >
       <ButtonContent />
     </button>
-  )
+  );
 }
-

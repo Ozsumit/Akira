@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Github, Maximize2 } from "lucide-react";
-import GlitchImage from "@/components/glitch-image";
-import NeonText from "@/components/neon-text";
-import HexagonButton from "@/components/hexagon-button";
-import PowerIndicator from "@/components/power-indicator";
+import GlitchImage from "../components/glitch-image";
+import NeonText from "../components/neon-text";
+import HexagonButton from "../components/hexagon-button";
+import PowerIndicator from "../components/power-indicator";
 
 interface Project {
   id: number;
@@ -127,8 +127,7 @@ export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                   className="text-red-400 hover:text-red-300 transition-colors"
                 >
                   {/* <Maximize2 className="h-4 w-4" /> */}
-                {/* ??</button> */} 
-
+                {/* ??</button> */}
               </div>
             </div>
 

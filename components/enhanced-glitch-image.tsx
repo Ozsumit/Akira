@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, useRef, memo } from "react"
-import { cn } from "@/lib/utils"
+import { useState, useEffect, useRef, memo } from "react";
+import { cn } from "../lib/utils";
 
 interface EnhancedGlitchImageProps {
-  children: React.ReactNode
-  className?: string
-  intensity?: "low" | "medium" | "high"
-  frequency?: "rare" | "occasional" | "frequent"
+  children: React.ReactNode;
+  className?: string;
+  intensity?: "low" | "medium" | "high";
+  frequency?: "rare" | "occasional" | "frequent";
 }
 
 const EnhancedGlitchImage = memo(function EnhancedGlitchImage({
@@ -18,24 +18,34 @@ const EnhancedGlitchImage = memo(function EnhancedGlitchImage({
   intensity = "medium",
   frequency = "occasional",
 }: EnhancedGlitchImageProps) {
-  const [isGlitching, setIsGlitching] = useState(false)
-  const [glitchType, setGlitchType] = useState<"horizontal" | "vertical" | "rgb" | "noise">("horizontal")
-  const [rgbShift, setRgbShift] = useState({ r: 0, g: 0, b: 0 })
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [isGlitching, setIsGlitching] = useState(false);
+  const [glitchType, setGlitchType] = useState<
+    "horizontal" | "vertical" | "rgb" | "noise"
+  >("horizontal");
+  const [rgbShift, setRgbShift] = useState({ r: 0, g: 0, b: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Set frequency intervals based on the prop
-    const intervalTime = frequency === "rare" ? 5000 : frequency === "occasional" ? 3000 : 1500
-    const glitchDuration = intensity === "low" ? 150 : intensity === "medium" ? 250 : 350
-    const glitchProbability = frequency === "rare" ? 0.2 : frequency === "occasional" ? 0.4 : 0.6
+    const intervalTime =
+      frequency === "rare" ? 5000 : frequency === "occasional" ? 3000 : 1500;
+    const glitchDuration =
+      intensity === "low" ? 150 : intensity === "medium" ? 250 : 350;
+    const glitchProbability =
+      frequency === "rare" ? 0.2 : frequency === "occasional" ? 0.4 : 0.6;
 
     // Random glitch effect
     const glitchInterval = setInterval(() => {
       if (Math.random() < glitchProbability) {
         // Choose a random glitch type
-        const types: ("horizontal" | "vertical" | "rgb" | "noise")[] = ["horizontal", "vertical", "rgb", "noise"]
-        const randomType = types[Math.floor(Math.random() * types.length)]
-        setGlitchType(randomType)
+        const types: ("horizontal" | "vertical" | "rgb" | "noise")[] = [
+          "horizontal",
+          "vertical",
+          "rgb",
+          "noise",
+        ];
+        const randomType = types[Math.floor(Math.random() * types.length)];
+        setGlitchType(randomType);
 
         // Set RGB shift values if using that effect
         if (randomType === "rgb") {
@@ -43,49 +53,56 @@ const EnhancedGlitchImage = memo(function EnhancedGlitchImage({
             r: Math.floor(Math.random() * 10) - 5,
             g: Math.floor(Math.random() * 10) - 5,
             b: Math.floor(Math.random() * 10) - 5,
-          })
+          });
         }
 
-        setIsGlitching(true)
+        setIsGlitching(true);
 
         // Random duration for the glitch
-        const duration = glitchDuration + Math.random() * 200
-        setTimeout(() => setIsGlitching(false), duration)
+        const duration = glitchDuration + Math.random() * 200;
+        setTimeout(() => setIsGlitching(false), duration);
 
         // Sometimes trigger multiple glitches in succession
         if (Math.random() > 0.7) {
           setTimeout(() => {
-            setIsGlitching(true)
-            setTimeout(() => setIsGlitching(false), duration / 2)
-          }, duration + 50)
+            setIsGlitching(true);
+            setTimeout(() => setIsGlitching(false), duration / 2);
+          }, duration + 50);
         }
       }
-    }, intervalTime)
+    }, intervalTime);
 
-    return () => clearInterval(glitchInterval)
-  }, [intensity, frequency])
+    return () => clearInterval(glitchInterval);
+  }, [intensity, frequency]);
 
   const getIntensityClass = () => {
     switch (intensity) {
       case "low":
-        return "glitch-effect-low"
+        return "glitch-effect-low";
       case "medium":
-        return "glitch-effect-medium"
+        return "glitch-effect-medium";
       case "high":
-        return "glitch-effect-high"
+        return "glitch-effect-high";
       default:
-        return "glitch-effect-medium"
+        return "glitch-effect-medium";
     }
-  }
+  };
 
   return (
-    <div ref={containerRef} className={cn("relative overflow-hidden", isGlitching && getIntensityClass(), className)}>
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative overflow-hidden",
+        isGlitching && getIntensityClass(),
+        className
+      )}
+    >
       {/* Original content */}
       <div
         className={cn(
           "relative z-10",
           isGlitching && glitchType === "horizontal" && "glitch-horizontal",
-          isGlitching && glitchType === "vertical" && "glitch-vertical",
+          isGlitching && glitchType === "vertical" && "glitch-vertical"
         )}
       >
         {children}
@@ -133,7 +150,9 @@ const EnhancedGlitchImage = memo(function EnhancedGlitchImage({
       )}
 
       {/* Scan line effect */}
-      {isGlitching && <div className="absolute inset-0 bg-scan-lines opacity-40 z-30 pointer-events-none"></div>}
+      {isGlitching && (
+        <div className="absolute inset-0 bg-scan-lines opacity-40 z-30 pointer-events-none"></div>
+      )}
 
       {/* Horizontal tear lines */}
       {isGlitching && glitchType === "horizontal" && (
@@ -171,8 +190,7 @@ const EnhancedGlitchImage = memo(function EnhancedGlitchImage({
         </>
       )}
     </div>
-  )
-})
+  );
+});
 
-export default EnhancedGlitchImage
-
+export default EnhancedGlitchImage;

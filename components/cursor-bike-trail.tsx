@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { motion, useMotionValue, useSpring } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { cn } from "../lib/utils";
 
 interface CursorBikeTrailProps {
-  className?: string
-  intensity?: "low" | "medium" | "high"
-  trailLength?: number
-  disabled?: boolean
+  className?: string;
+  intensity?: "low" | "medium" | "high";
+  trailLength?: number;
+  disabled?: boolean;
 }
 
 export default function CursorBikeTrail({
@@ -17,68 +17,70 @@ export default function CursorBikeTrail({
   trailLength = 10,
   disabled = false,
 }: CursorBikeTrailProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const [trailPoints, setTrailPoints] = useState<{ x: number; y: number; id: number }[]>([])
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const springX = useSpring(mouseX, { stiffness: 1000, damping: 100 })
-  const springY = useSpring(mouseY, { stiffness: 1000, damping: 100 })
-  const idCounter = useRef(0)
+  const [isVisible, setIsVisible] = useState(false);
+  const [trailPoints, setTrailPoints] = useState<
+    { x: number; y: number; id: number }[]
+  >([]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 1000, damping: 100 });
+  const springY = useSpring(mouseY, { stiffness: 1000, damping: 100 });
+  const idCounter = useRef(0);
 
   // Get intensity values
   const getIntensityValues = () => {
     switch (intensity) {
       case "low":
-        return { opacity: 0.3, blur: "8px", size: "4px" }
+        return { opacity: 0.3, blur: "8px", size: "4px" };
       case "high":
-        return { opacity: 0.8, blur: "16px", size: "8px" }
+        return { opacity: 0.8, blur: "16px", size: "8px" };
       default:
-        return { opacity: 0.5, blur: "12px", size: "6px" }
+        return { opacity: 0.5, blur: "12px", size: "6px" };
     }
-  }
+  };
 
-  const { opacity, blur, size } = getIntensityValues()
+  const { opacity, blur, size } = getIntensityValues();
 
   // Track mouse movement
   useEffect(() => {
-    if (disabled) return
+    if (disabled) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX)
-      mouseY.set(e.clientY)
-      setIsVisible(true)
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      setIsVisible(true);
 
       // Add new point to trail
       const newPoint = {
         x: e.clientX,
         y: e.clientY,
         id: idCounter.current++,
-      }
+      };
 
       setTrailPoints((prev) => {
-        const newTrail = [...prev, newPoint]
+        const newTrail = [...prev, newPoint];
         // Keep only the most recent points based on trailLength
         if (newTrail.length > trailLength) {
-          return newTrail.slice(newTrail.length - trailLength)
+          return newTrail.slice(newTrail.length - trailLength);
         }
-        return newTrail
-      })
-    }
+        return newTrail;
+      });
+    };
 
     const handleMouseLeave = () => {
-      setIsVisible(false)
-    }
+      setIsVisible(false);
+    };
 
-    window.addEventListener("mousemove", handleMouseMove)
-    document.body.addEventListener("mouseleave", handleMouseLeave)
+    window.addEventListener("mousemove", handleMouseMove);
+    document.body.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      document.body.removeEventListener("mouseleave", handleMouseLeave)
-    }
-  }, [mouseX, mouseY, trailLength, disabled])
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.body.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [mouseX, mouseY, trailLength, disabled]);
 
-  if (disabled) return null
+  if (disabled) return null;
 
   return (
     <div className={cn("fixed inset-0 pointer-events-none z-50", className)}>
@@ -100,8 +102,8 @@ export default function CursorBikeTrail({
       {/* Trail points */}
       {trailPoints.map((point, index) => {
         // Calculate size and opacity based on position in trail
-        const pointSize = Number.parseInt(size) * (1 - index / trailLength)
-        const pointOpacity = opacity * (1 - index / trailLength)
+        const pointSize = Number.parseInt(size) * (1 - index / trailLength);
+        const pointOpacity = opacity * (1 - index / trailLength);
 
         return (
           <motion.div
@@ -115,12 +117,16 @@ export default function CursorBikeTrail({
               top: point.y,
               width: `${pointSize}px`,
               height: `${pointSize}px`,
-              boxShadow: `0 0 ${Number.parseInt(blur) * (1 - index / trailLength)}px ${Number.parseInt(blur) * (1 - index / trailLength)}px rgba(239, 68, 68, 0.8)`,
+              boxShadow: `0 0 ${
+                Number.parseInt(blur) * (1 - index / trailLength)
+              }px ${
+                Number.parseInt(blur) * (1 - index / trailLength)
+              }px rgba(239, 68, 68, 0.8)`,
               filter: `blur(${pointSize / 2}px)`,
               transform: "translate(-50%, -50%)",
             }}
           />
-        )
+        );
       })}
 
       {/* Bike trail effect */}
@@ -172,6 +178,5 @@ export default function CursorBikeTrail({
           />
         ))}
     </div>
-  )
+  );
 }
-

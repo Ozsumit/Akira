@@ -1,14 +1,22 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { cn } from "../lib/utils";
 
 interface BikeTrailProps {
-  className?: string
-  position?: "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right"
-  size?: "sm" | "md" | "lg"
-  intensity?: "low" | "medium" | "high"
+  className?: string;
+  position?:
+    | "left"
+    | "right"
+    | "top"
+    | "bottom"
+    | "top-left"
+    | "top-right"
+    | "bottom-left"
+    | "bottom-right";
+  size?: "sm" | "md" | "lg";
+  intensity?: "low" | "medium" | "high";
 }
 
 export default function BikeTrail({
@@ -17,55 +25,55 @@ export default function BikeTrail({
   size = "md",
   intensity = "medium",
 }: BikeTrailProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Determine size classes
   const getSizeClass = () => {
     switch (size) {
       case "sm":
-        return "w-32 h-32 md:w-48 md:h-48"
+        return "w-32 h-32 md:w-48 md:h-48";
       case "lg":
-        return "w-64 h-64 md:w-96 md:h-96"
+        return "w-64 h-64 md:w-96 md:h-96";
       default:
-        return "w-48 h-48 md:w-64 md:h-64"
+        return "w-48 h-48 md:w-64 md:h-64";
     }
-  }
+  };
 
   // Determine position classes
   const getPositionClass = () => {
     switch (position) {
       case "left":
-        return "-left-16 top-1/2 -translate-y-1/2"
+        return "-left-16 top-1/2 -translate-y-1/2";
       case "right":
-        return "-right-16 top-1/2 -translate-y-1/2"
+        return "-right-16 top-1/2 -translate-y-1/2";
       case "top":
-        return "top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        return "top-0 left-1/2 -translate-x-1/2 -translate-y-1/2";
       case "bottom":
-        return "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"
+        return "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2";
       case "top-left":
-        return "-top-16 -left-16"
+        return "-top-16 -left-16";
       case "top-right":
-        return "-top-16 -right-16"
+        return "-top-16 -right-16";
       case "bottom-left":
-        return "-bottom-16 -left-16"
+        return "-bottom-16 -left-16";
       case "bottom-right":
-        return "-bottom-16 -right-16"
+        return "-bottom-16 -right-16";
       default:
-        return "-right-16 top-1/2 -translate-y-1/2"
+        return "-right-16 top-1/2 -translate-y-1/2";
     }
-  }
+  };
 
   // Determine intensity
   const getIntensityClass = () => {
     switch (intensity) {
       case "low":
-        return "opacity-30"
+        return "opacity-30";
       case "high":
-        return "opacity-70"
+        return "opacity-70";
       default:
-        return "opacity-50"
+        return "opacity-50";
     }
-  }
+  };
 
   return (
     <div
@@ -75,7 +83,7 @@ export default function BikeTrail({
         getSizeClass(),
         getPositionClass(),
         getIntensityClass(),
-        className,
+        className
       )}
     >
       {/* Main glow effect */}
@@ -149,6 +157,5 @@ export default function BikeTrail({
         ))}
       </div>
     </div>
-  )
+  );
 }
-

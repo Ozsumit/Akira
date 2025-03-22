@@ -3,9 +3,9 @@
 import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-import PowerIndicator from "@/components/power-indicator";
-import AkiraLogo from "@/components/akira-logo";
+import { cn } from "../lib/utils";
+import PowerIndicator from "../components/power-indicator";
+import AkiraLogo from "../components/akira-logo";
 
 interface UnifiedNavigationProps {
   activeSection: string;
