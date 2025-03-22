@@ -27,7 +27,7 @@ import BikeTrail from "@/components/bike-trail";
 import dynamic from "next/dynamic";
 import UnifiedNavigation from "@/components/unified-navigation";
 import TechShowcase from "@/components/tech-showcase";
-
+// nmdf
 // Replace the direct imports of heavy components with lazy loaded versions
 const NeoTokyoShowcase = dynamic(
   () => import("@/components/neo-tokyo-showcase"),
