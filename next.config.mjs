@@ -1,17 +1,14 @@
-let userConfig = undefined
+let userConfig;
 try {
-  userConfig = await import('./v0-user-next.config')
+  userConfig = await import("./v0-user-next.config.js"); // Ensure the path and file extension are correct
 } catch (e) {
-  // ignore error
+  console.warn("User configuration could not be loaded:", e);
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
@@ -21,28 +18,30 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-}
-
-mergeConfig(nextConfig, userConfig)
+};
 
 function mergeConfig(nextConfig, userConfig) {
   if (!userConfig) {
-    return
+    return;
   }
 
   for (const key in userConfig) {
     if (
-      typeof nextConfig[key] === 'object' &&
-      !Array.isArray(nextConfig[key])
+      typeof nextConfig[key] === "object" &&
+      !Array.isArray(nextConfig[key]) &&
+      typeof userConfig[key] === "object" &&
+      !Array.isArray(userConfig[key])
     ) {
       nextConfig[key] = {
         ...nextConfig[key],
         ...userConfig[key],
-      }
+      };
     } else {
-      nextConfig[key] = userConfig[key]
+      nextConfig[key] = userConfig[key];
     }
   }
 }
 
-export default nextConfig
+mergeConfig(nextConfig, userConfig);
+
+export default nextConfig;
